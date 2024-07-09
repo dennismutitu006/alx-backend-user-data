@@ -38,4 +38,4 @@ class Auth:
 
     def current_user(self, request=None) -> TypeVar('User'):
         '''returns None-request will be the flask request obj'''
-        pass
+        return None

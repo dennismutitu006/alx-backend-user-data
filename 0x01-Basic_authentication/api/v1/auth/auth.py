@@ -10,7 +10,22 @@ class Auth:
         '''public method that takes args and returns a bool false
         path and excluded_paths.
         '''
-        pass
+        if path is None:
+            return True
+        elif excluded_paths is None or excluded_paths == []:
+            return True
+        elif path in excluded_paths:
+            return False
+        else:
+            for i in excluded_paths:
+                if i.startswith(path):
+                    return False
+                if path.startswith(i):
+                    return False
+                 if i[-1] == "*":
+                     if path.startswith(i[:-1]):
+                         return False
+        return True
 
 
     def authorization_header(self, request=None) -> str:

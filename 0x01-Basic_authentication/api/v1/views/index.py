@@ -31,3 +31,9 @@ def unauthorized():
     '''GET api/v1/unauthorized
     '''
     return abort(401)
+
+@app_views.route('/forbidden', methods=['GET'], strict_slashes=False)
+def forbid():
+    '''GET /api/v1/forbidden
+    '''
+    return abort(403)

@@ -29,7 +29,12 @@ class Auth:
 
     def authorization_header(self, request=None) -> str:
         '''public method that returns none-request will be th flask req obj'''
-        pass
+        if request is None:
+            return None
+        if Authorization not request.headers:
+            return None
+        else:
+            return request.headers['Authorization']
 
     def current_user(self, request=None) -> TypeVar('User'):
         '''returns None-request will be the flask request obj'''

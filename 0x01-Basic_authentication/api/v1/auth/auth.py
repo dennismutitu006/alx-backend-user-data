@@ -22,16 +22,14 @@ class Auth:
                     return False
                 if path.startswith(i):
                     return False
-                 if i[-1] == "*":
-                     if path.startswith(i[:-1]):
-                         return False
+                if i[-1] == "*":
+                    if path.startswith(i[:-1]):
+                        return False
         return True
-
 
     def authorization_header(self, request=None) -> str:
         '''public method that returns none-request will be th flask req obj'''
         pass
-
 
     def current_user(self, request=None) -> TypeVar('User'):
         '''returns None-request will be the flask request obj'''

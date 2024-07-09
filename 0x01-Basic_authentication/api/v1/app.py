@@ -21,6 +21,8 @@ if os.getenv("AUTH_TYPE") == "auth":
 @app.before_request
 def before_request():
     '''this function is exec b4 each req is handled by a blueprint'''
+    excluded_paths = ['/api/v1/status/', '/api/v1/unauthorized/',
+                      '/api/v1/forbidden/']
     if auth is None:
         return
     if not auth.require_auth(request.path, excluded_paths):

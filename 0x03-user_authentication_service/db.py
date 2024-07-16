@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''DB module
 '''
 from sqlalchemy import create_engine
@@ -25,11 +26,11 @@ class DB:
         """Memoized session object
         """
         if self.__session is None:
-            DBSession = sessionmaker(bind=self.engine)
+            DBSession = sessionmaker(bind=self._engine)
             self.__session = DBSession()
         return self.__session
 
-    def add_user(email: str, hashed_password: str) -> User:
+    def add_user(self, email: str, hashed_password: str) -> User:
         '''creates and adds a user to the db and returns user object.
         '''
         new_user = User(email=email, hashed_password=hashed_password)

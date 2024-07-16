@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
-'''DB module
-'''
+"""DB module
+"""
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -10,8 +9,8 @@ from user import Base, User
 
 
 class DB:
-    '''DB class
-    '''
+    """DB class
+    """
 
     def __init__(self) -> None:
         """Initialize a new DB instance

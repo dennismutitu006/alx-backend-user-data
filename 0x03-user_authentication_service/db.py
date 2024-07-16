@@ -48,3 +48,18 @@ class DB:
             raise NoResultFound("No user found with the given criteria")
         except InvalidRequestError:
             raise InvalidRequestError("Invalid request with the given ")
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """func updates the user table.
+        """
+        try:
+            user = self.find_user_by(id=user_id)
+            for key, value in kwargs.items():
+                if not hasattr(user, key):
+                    raise ValueError("Error")
+                setattr(user, key, value)
+            self._session.commit()
+        except NoResultFound:
+            raise NoResultFound(f"No user found with id {user_id}")
+        except InvalidRequestError:
+            raise InvalidRequestError(f"Invalid request with id {user_id}")

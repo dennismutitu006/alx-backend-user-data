@@ -16,16 +16,13 @@ def welcome():
 def users():
     '''POST /users route to register a user.
     '''
-    email = request.form.get("email")
-    password = request.form.get("password")
-
-    if not email or not password:
-        return jsonify({"message": "email and password are required"}), 400
-
     try:
+        email = request.form.get("email")
+        password = request.form.get("password")
+
         user = AUth.register_user(email, password)
-        return jsonify({"email": user.email, "message": "user created"}), 201
-    except ValueError:
+        return jsonify({"email": user.email, "message": "user created"}), 200
+    except ValueError as e:
         return jsonify({"message": "email already registered"}), 400
 
 

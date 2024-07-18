@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from flask import Flask, jsonify, request, abort
 from auth import Auth
+from db import DB
 
 AUTH = Auth()
 app = Flask(__name__)
@@ -63,6 +64,20 @@ def profile():
     if user:
         return jsonify({"email": user.email}), 200
     else:
+        abort(403)
+
+
+@app.route("/reset_password", methods=["POST"], strict_slashes=False)
+def reset_password():
+    """to get the request password token"""
+    email = request.form.get("email")
+    try:
+        token = AUTH.get_reset_password_token(email)
+        if token:
+            return jsonify({"email": email, "reset_token": token}), 200
+        else:
+            abort(403)
+    except ValueError:
         abort(403)
 
 

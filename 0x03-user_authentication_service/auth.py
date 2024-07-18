@@ -9,8 +9,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 def _generate_uuid() -> str:
     '''generate universary unique identifier.'''
-    uuid = uuid.uuid1()
-    return str(uuid)
+    return str(uuid.uuid4())
 
 
 def _hash_password(password: str) -> bytes:

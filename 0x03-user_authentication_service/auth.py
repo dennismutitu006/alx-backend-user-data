@@ -88,12 +88,11 @@ class Auth:
             return reset_token
 
     def update_password(self, reset_token: str, password: str) -> None:
-        """update password function.
-        """
+        """ Update password for user with token"""
         try:
             user = self._db.find_user_by(reset_token=reset_token)
-            hashed_password = _hash_password(password)
-            self._db.update_user(user_id, hashed_password=hashed_password,
+            h_password = _hash_password(password)
+            self._db.update_user(user.id, hashed_password=h_password,
                                  reset_token=None)
             return None
         except Exception:

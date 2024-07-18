@@ -75,11 +75,10 @@ class Auth:
 
     def get_reset_password_token(self, email: str) -> str:
         """function takes an email arg and returns a string."""
-        user = self._db.find_user_by(email=email)
         try:
-            if user:
-                uid = _generate_uuid()
-                token = self._db.update_user(user_id, reset_token=uid)
-                return token
-            except ValueError:
-                pass
+            user = self._db.find_user_by(email=email)
+            uid = _generate_uuid()
+            token = self._db.update_user(user_id, reset_token=uid)
+            return token
+        except NoResultFound:
+            raise ValueError(f"User {email} does not exist")

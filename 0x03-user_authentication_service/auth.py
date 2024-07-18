@@ -9,7 +9,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 def _generate_uuid() -> str:
     '''generate universary unique identifier.'''
-    uuid = uuid.uuid4()
+    uuid = uuid.uuid1()
     return str(uuid)
 
 

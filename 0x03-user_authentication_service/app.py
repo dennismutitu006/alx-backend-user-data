@@ -40,7 +40,7 @@ def login():
     return reponse
 
 
-@app.route("/sessions", methods=["DELETE"], strict_slashes=False)
+@app.route("/sessions", methods=["DELETE", "GET"], strict_slashes=False)
 def logout():
     '''Logout user and destroy session id'''
     session_id = request.cookies.get("session_id")

@@ -77,8 +77,12 @@ class Auth:
         """function takes an email arg and returns a string."""
         try:
             user = self._db.find_user_by(email=email)
-            uid = _generate_uuid()
-            token = self._db.update_user(user_id, reset_token=uid)
-            return token
+            if not user or user is None:
+                raise ValueError("User not found")
+
+            reset_token = _generate_uuid()
+            user.reset_token = reset_token
         except NoResultFound:
             raise ValueError(f"User {email} does not exist")
+        else:
+            return reset_token

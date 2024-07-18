@@ -3,7 +3,14 @@
 import bcrypt
 from user import User
 from db import DB
+import uuid
 from sqlalchemy.orm.exc import NoResultFound
+
+
+def _generate_uuid() -> str:
+    '''generate universary unique identifier.'''
+    uuid = uuid.uuid4()
+    return str(uuid)
 
 
 def _hash_password(password: str) -> bytes:
